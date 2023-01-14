@@ -8,6 +8,7 @@ import {
 } from "@react-three/drei";
 import { proxy, useSnapshot } from "valtio";
 import { HexColorPicker } from "react-colorful";
+import { Helmet } from "react-helmet";
 
 const state = proxy({
   current: null,
@@ -46,66 +47,73 @@ function Shoe(props) {
   }, [hovered]);
 
   return (
-    <group
-      ref={ref}
-      dispose={null}
-      scale={3}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(e.object.material.name);
-      }}
-      onPointerOut={(e) => {
-        e.intersections.length === 0 && setHovered(null);
-      }}
-      onPointerDown={(e) => {
-        e.stopPropagation();
-        state.current = e.object.material.name;
-      }}
-      onPointerMissed={(e) => {
-        state.current = null;
-      }}
-    >
-      <mesh
-        material-color={snap.items.laces}
-        geometry={nodes.shoe.geometry}
-        material={materials.laces}
-      />
-      <mesh
-        material-color={snap.items.mesh}
-        geometry={nodes.shoe_1.geometry}
-        material={materials.mesh}
-      />
-      <mesh
-        material-color={snap.items.caps}
-        geometry={nodes.shoe_2.geometry}
-        material={materials.caps}
-      />
-      <mesh
-        material-color={snap.items.inner}
-        geometry={nodes.shoe_3.geometry}
-        material={materials.inner}
-      />
-      <mesh
-        material-color={snap.items.sole}
-        geometry={nodes.shoe_4.geometry}
-        material={materials.sole}
-      />
-      <mesh
-        material-color={snap.items.stripes}
-        geometry={nodes.shoe_5.geometry}
-        material={materials.stripes}
-      />
-      <mesh
-        material-color={snap.items.band}
-        geometry={nodes.shoe_6.geometry}
-        material={materials.band}
-      />
-      <mesh
-        material-color={snap.items.patch}
-        geometry={nodes.shoe_7.geometry}
-        material={materials.patch}
-      />
-    </group>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>3D Product Customizer</title>
+        <link rel="canonical" href="" />
+      </Helmet>
+      <group
+        ref={ref}
+        dispose={null}
+        scale={3}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          setHovered(e.object.material.name);
+        }}
+        onPointerOut={(e) => {
+          e.intersections.length === 0 && setHovered(null);
+        }}
+        onPointerDown={(e) => {
+          e.stopPropagation();
+          state.current = e.object.material.name;
+        }}
+        onPointerMissed={(e) => {
+          state.current = null;
+        }}
+      >
+        <mesh
+          material-color={snap.items.laces}
+          geometry={nodes.shoe.geometry}
+          material={materials.laces}
+        />
+        <mesh
+          material-color={snap.items.mesh}
+          geometry={nodes.shoe_1.geometry}
+          material={materials.mesh}
+        />
+        <mesh
+          material-color={snap.items.caps}
+          geometry={nodes.shoe_2.geometry}
+          material={materials.caps}
+        />
+        <mesh
+          material-color={snap.items.inner}
+          geometry={nodes.shoe_3.geometry}
+          material={materials.inner}
+        />
+        <mesh
+          material-color={snap.items.sole}
+          geometry={nodes.shoe_4.geometry}
+          material={materials.sole}
+        />
+        <mesh
+          material-color={snap.items.stripes}
+          geometry={nodes.shoe_5.geometry}
+          material={materials.stripes}
+        />
+        <mesh
+          material-color={snap.items.band}
+          geometry={nodes.shoe_6.geometry}
+          material={materials.band}
+        />
+        <mesh
+          material-color={snap.items.patch}
+          geometry={nodes.shoe_7.geometry}
+          material={materials.patch}
+        />
+      </group>
+    </>
   );
 }
 
